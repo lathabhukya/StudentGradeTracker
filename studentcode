@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class GradeTracker {
+
+    private ArrayList<Integer> grades;
+
+    public GradeTracker() {
+        grades = new ArrayList<>();
+    }
+
+    public void addGrade(int grade) {
+        grades.add(grade);
+    }
+
+    public double calculateAverage() {
+        if (grades.isEmpty()) {
+            return 0;
+        }
+
+        double sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+
+        return sum / grades.size();
+    }
+
+    public int findHighest() {
+        if (grades.isEmpty()) {
+            return 0;
+        }
+
+        return Collections.max(grades);
+    }
+
+    public int findLowest() {
+        if (grades.isEmpty()) {
+            return 0;
+        }
+
+        return Collections.min(grades);
+    }
+
+    public static void main(String[] args) {
+        GradeTracker tracker = new GradeTracker();
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter student grades (-1 to quit): ");
+        while (true) {
+            int grade = input.nextInt();
+            if (grade == -1) {
+                break;
+            }
+
+            tracker.addGrade(grade);
+        }
+
+        System.out.println("Average grade: " + tracker.calculateAverage());
+        System.out.println("Highest grade: " + tracker.findHighest());
+        System.out.println("Lowest grade: " + tracker.findLowest());
+    }
+}
